@@ -29,7 +29,7 @@
 
 -(NSString *) startComment
 {
-    return [NSString stringWithFormat:@"%@/**\n%@ *%@<#%@#>\n",self.indent,self.indent,self.space,@"Description"];
+    return [NSString stringWithFormat:@"%@/**\n%@%@<#%@#>\n",self.indent,self.indent,self.space,@"Description"];
 }
 
 -(NSString *) argumentsComment
@@ -37,9 +37,9 @@
     NSMutableString *result = [NSMutableString stringWithString:@""];
     for (VVArgument *arg in self.arguments) {
         if (result.length == 0) {
-            [result appendFormat:@"%@ *\n",self.indent];
+            [result appendFormat:@"%@\n",self.indent];
         }
-        [result appendFormat:@"%@ *%@@param%@%@%@<#%@ description#>\n",self.indent,self.space,self.space,arg.name,self.space,arg.name];
+        [result appendFormat:@"%@%@@param%@%@%@<#%@ description#>\n",self.indent,self.space,self.space,arg.name,self.space,arg.name];
     }
     return result;
 }
@@ -50,7 +50,7 @@
     if (!self.hasReturn) {
         return @"";
     } else {
-        return [NSString stringWithFormat:@"%@ *\n%@ *%@@return%@<#return value description#>\n",self.indent,self.indent,self.space,self.space];
+        return [NSString stringWithFormat:@"%@\n%@%@@return%@<#return value description#>\n",self.indent,self.indent,self.space,self.space];
     }
 }
 
